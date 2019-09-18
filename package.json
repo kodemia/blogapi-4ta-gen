@@ -1,9 +1,10 @@
 {
   "name": "blogapi",
   "version": "1.0.0",
-  "description": "api for the medium blog clone in kodemia",
+  "description": "Api for the medium blog clone in kodemia",
   "main": "index.js",
   "scripts": {
+    "start": "node index.js",
     "dev": "nodemon index.js"
   },
   "keywords": [
@@ -15,6 +16,12 @@
   ],
   "author": "@devcharles",
   "license": "ISC",
+  "husky": {
+    "hooks": {
+      "pre-commit": "echo '- RUNNIG STANDARD -' && standard --fix",
+      "pre-push": "npm test"
+    }
+  },
   "dependencies": {
     "bcrypt": "^3.0.6",
     "cors": "^2.8.5",
@@ -24,6 +31,8 @@
     "mongoose": "^5.7.0"
   },
   "devDependencies": {
-    "nodemon": "^1.19.2"
+    "husky": "^3.0.5",
+    "nodemon": "^1.19.2",
+    "standard": "^14.3.0"
   }
 }
