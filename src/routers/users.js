@@ -4,9 +4,9 @@ const express = require('express')
 const user = require('../usecases/user')
 
 const router = express.Router()
-const auth = require('../middlewares/authRoles')
+const auth = require('../middlewares/auth')
 
-router.get('/', auth(['user']), async (request, response) => {
+router.get('/', auth, async (request, response) => {
   try {
     const allUsers = await user.getAll()
     response.json({
