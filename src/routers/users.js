@@ -48,7 +48,7 @@ router.get('/:id', async (request, response) => {
 router.delete('/:id', async (request, response) => {
   try {
     const { id } = request.params
-    const deletedUser = await user.deleteById(id) 
+    const deletedUser = await user.deleteById(id)
     response.json({
       success: true,
       message: `User ${id} deleted`,
@@ -84,7 +84,7 @@ router.post('/', async (request, response) => {
   }
 })
 
-router.post('/login', async ( request, response) => {
+router.post('/login', async (request, response) => {
   try {
     const {
       email,

@@ -46,10 +46,9 @@ router.get('/', async (request, response) => {
 })
 
 router.delete('/:id', async (request, response) => {
-
   try {
     const { id } = request.params
-  
+
     const deletedPost = await post.deleteById(id)
     response.json({
       success: true,
@@ -58,7 +57,6 @@ router.delete('/:id', async (request, response) => {
         post: deletedPost
       }
     })
-
   } catch (error) {
     response.json({
       success: false,
@@ -66,7 +64,6 @@ router.delete('/:id', async (request, response) => {
       error: error.message
     })
   }
-
 })
 router.patch('/:id', async (request, response) => {
   try {
@@ -105,6 +102,5 @@ router.patch('/:id', async (request, response) => {
     })
   }
 })
-
 
 module.exports = router

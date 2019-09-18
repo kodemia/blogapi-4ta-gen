@@ -4,9 +4,9 @@ const jwt = require('../lib/jwt')
 async function auth (request, response, next) {
   try {
     const { authorization: token } = request.headers
-  
+
     const isTokenValid = await jwt.verify(token)
-    if(!isTokenValid) throw new Error('Unathorized')
+    if (!isTokenValid) throw new Error('Unathorized')
 
     next()
   } catch (error) {

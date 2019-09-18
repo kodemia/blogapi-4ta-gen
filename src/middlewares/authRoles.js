@@ -6,10 +6,10 @@ function authRoles (role = []) {
   return async function (request, response, next) {
     try {
       const { authorization: token } = request.headers
-    
+
       const decodedToken = await jwt.verify(token)
-      if(!decodedToken) throw new Error('Unathorized')
-      
+      if (!decodedToken) throw new Error('Unathorized')
+
       if (!role.includes(decodedToken.role)) throw new Error('Unathorized role')
       next()
     } catch (error) {
