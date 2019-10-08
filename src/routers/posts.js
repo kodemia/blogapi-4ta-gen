@@ -8,6 +8,7 @@ const router = express.Router()
 router.post('/', async (request, response) => {
   try {
     const newPostData = request.body
+
     const newPost = await post.create(newPostData)
 
     response.json({
@@ -45,6 +46,28 @@ router.get('/', async (request, response) => {
   }
 })
 
+router.get('/:id', async (request, response) => {
+  try {
+    const { id } = request.params
+
+    const postDetail = await post.getById(id)
+
+    response.json({
+      success: true,
+      message: `Post ${id}`,
+      data: {
+        post: postDetail
+      }
+    })
+  } catch (error) {
+    response.json({
+      success: false,
+      message: 'Something went wrong',
+      error: error.message
+    })
+  }
+})
+
 router.delete('/:id', async (request, response) => {
   try {
     const { id } = request.params
@@ -65,6 +88,7 @@ router.delete('/:id', async (request, response) => {
     })
   }
 })
+
 router.patch('/:id', async (request, response) => {
   try {
     const { id } = request.params

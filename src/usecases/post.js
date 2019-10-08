@@ -25,9 +25,14 @@ function updateById (id, postData) {
   return Post.findByIdAndUpdate(id, postData)
 }
 
+function getById (id) {
+  return Post.findById(id)
+}
+
 module.exports = {
   create,
   getAll,
   deleteById,
-  updateById
+  updateById,
+  getById
 }
