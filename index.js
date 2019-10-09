@@ -13,7 +13,7 @@ const listenServer = function () {
 }
 
 async function main () {
-  await dbConnect()
+  await dbConnect(process.env.DB_URL)
   console.log('DB CONNECTED')
   await listenServer()
   console.log('SERVER LISTENING')
