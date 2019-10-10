@@ -29,14 +29,12 @@ router.get('/validate/session', async (request, response) => {
   const { authorization: token } = request.headers
 
   try {
-    const newToken = await user.validateSession(token)
+    const data = await user.validateSession(token)
 
     response.json({
       success: true,
       message: 'session validated',
-      data: {
-        token: newToken
-      }
+      data
     })
   } catch (error) {
     response.json({

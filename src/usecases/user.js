@@ -39,7 +39,11 @@ async function validateSession (token) {
   const userFound = await getById(verified.id)
   if (!userFound) throw new Error('Invalid data')
 
-  return jwt.sign({ id: userFound._id, role: userFound.role })
+  return {
+    token: jwt.sign({ id: userFound._id, role: userFound.role }),
+    name: userFound.name,
+    email: userFound.email
+  }
 }
 
 module.exports = {
