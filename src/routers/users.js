@@ -25,6 +25,28 @@ router.get('/', auth, async (request, response) => {
   }
 })
 
+router.get('/validate/session', async (request, response) => {
+  const { authorization: token } = request.headers
+
+  try {
+    const token = await user.validateSession(token)
+
+    response.json({
+      success: true,
+      message: 'All users',
+      data: {
+        token
+      }
+    })
+  } catch (error) {
+    response.json({
+      success: false,
+      message: 'Something went wrong',
+      error: error.message
+    })
+  }
+})
+
 router.get('/:id', async (request, response) => {
   try {
     const { id } = request.params

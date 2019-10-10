@@ -31,10 +31,22 @@ async function login (email, password) {
   return jwt.sign({ id: userFound._id, role: userFound.role })
 }
 
+async function validateSession (token) {
+  const verified = await jwt.verify(token)
+
+  if (!verified) throw new Error('Invalid session')
+
+  const userFound = await getById(verified.id)
+  if (!userFound) throw new Error('Invalid data')
+
+  return jwt.sign({ id: userFound._id, role: userFound.role })
+}
+
 module.exports = {
   create,
   getAll,
   getById,
   deleteById,
-  login
+  login,
+  validateSession
 }
